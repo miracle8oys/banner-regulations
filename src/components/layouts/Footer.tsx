@@ -2,7 +2,7 @@ import { AiFillHeart } from "react-icons/ai";
 
 const Footer = () => {
   return (
-    <nav className="px-6 bg-white border-gray-200 shadow-lg py-7 font-medium">
+    <nav className="px-6 bg-white border-gray-200 shadow-lg py-7 font-medium text-grey">
       <div className="mx-auto">
         <p className="flex">
           Design & Develop with{" "}

@@ -24,16 +24,16 @@ const OptionModal = ({
         onClick={() => setShowModal(0)}
         className="relative p-4 flex justify-end text-lg font-medium"
       >
-        <div className="relative bg-secondary shadow-md w-40 pl-3 pt-2 h-28 rounded dark:bg-gray-700">
-          <div className="flex gap-5 items-center">
+        <div className="relative bg-secondary shadow-md w-40 pl-3 pt-2 h-32 rounded dark:bg-gray-700">
+          <div className="flex gap-5 items-center mt-2">
             <MdEdit className="text-primary text-xl" />
             <p>Edit</p>
           </div>
-          <div className="flex gap-5 items-center">
+          <div className="flex gap-5 items-center mt-2">
             <MdPayment className="text-primary text-xl" />
             <p>Pembayaran</p>
           </div>
-          <div className="flex gap-5 items-center">
+          <div className="flex gap-5 items-center mt-2">
             <MdDeleteOutline className="text-primary text-xl" />
             <p>Hapus</p>
           </div>
