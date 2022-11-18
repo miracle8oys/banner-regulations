@@ -1,0 +1,71 @@
+{
+    "id_reg": 3,
+    "detailForm": [
+        {
+          "label": "Bunyi Reklame",
+          "form_type": 1,
+          "kode_isian": "BUNYI_REKLAME",
+          "value": "Coblos No 2"
+        },
+        {
+          "label": "Jenis Reklame",
+          "form_type": 1,
+          "kode_isian": "JENIS_REKLAME",
+          "value": "Kampanye Pilpres"
+        },
+        {
+          "label": "Area Pemasangan",
+          "form_type": 1,
+          "kode_isian": "AREA_PEMASANGAN",
+          "value": "Denpasar Utara"
+        },
+        {
+          "label": "Panjang Reklame",
+          "form_type": 1,
+          "kode_isian": "PANJANG_REKLAME",
+          "value": "3"
+        },
+        {
+          "label": "Lebar Reklame",
+          "form_type": 1,
+          "kode_isian": "LEBAR_REKLAME",
+          "value": "5"
+        },
+        {
+          "label": "Jumlah Muka Reklame",
+          "form_type": 1,
+          "kode_isian": "JUMLAH_MUKA",
+          "value": "2"
+        },
+        {
+          "label": "Lama Pemasangan",
+          "form_type": 1,
+          "kode_isian": "LAMA_PEMASANGAN",
+          "value": "5 Bulan"
+        },
+        {
+          "label": "Tanggal Mulai Pemasangan",
+          "form_type": 1,
+          "kode_isian": "TGL_MULAI",
+          "value": "2023-07-12"
+        },
+        {
+          "label": "Tanggal Akhir Pemasangan",
+          "form_type": 1,
+          "kode_isian": "TGL_AKHIR",
+          "value": "2023-12-12"
+        },
+        {
+          "label": "Tempat Pemasangan",
+          "form_type": 1,
+          "kode_isian": "TEMPAT_PEMASANGAN",
+          "value": "Jl. Cokroaminoto no 12 gang vii"
+        },
+        {
+          "label": "Titik Koordinat Pemasangan",
+          "form_type": 1,
+          "kode_isian": "TITIK_KOORDINAT",
+          "value": "-8.157982, 115.151254"
+        }
+      ]
+}

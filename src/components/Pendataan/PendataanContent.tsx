@@ -20,22 +20,30 @@ const PendataanContent = ({ data }: PendataanContentProps) => {
               No Registrasi
             </th>
             <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
-              Jenis Reklame
+              Nama Perusahaan
             </th>
-            <th scope="col" className="py-3 md:px-5 px-2 md:w-3/12 w-2/12">
-              Tempat Pemasangan
-            </th>
-            <th scope="col" className="py-3 md:px-5 px-2 w-2/12">
-              Nama Wajib Pajak
-            </th>
-            <th scope="col" className="py-3 md:px-5 px-2 w-2/12">
-              Akhir Pemasangan
-            </th>
-            <th scope="col" className="py-3 md:px-5 px-2 md:w-2/12 w-2/12">
-              Status
-            </th>
-            <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
-              Opsi
+            <th scope="col" className="py-3 md:px-5 px-2 w-10/12">
+              <table className="w-max md:w-full">
+                <thead>
+                  <tr>
+                    <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
+                      Jenis Reklame
+                    </th>
+                    <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
+                      Tempat Pemasangan
+                    </th>
+                    <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
+                      Akhir Pemasangan
+                    </th>
+                    <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
+                      Status
+                    </th>
+                    <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
+                      <p className="w-full">Opsi</p>
+                    </th>
+                  </tr>
+                </thead>
+              </table>
             </th>
           </tr>
         </thead>

@@ -1,18 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import customFetch from "../../utils/customFetch";
+import { ReklameDetailType } from "../../utils/dataInterface";
 import dataMutation from "../../utils/dataMutation";
 
 interface ReklameModalProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   showModal: boolean;
+  reklame_id: number;
 }
 
-const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
-  const [alamat, setAlamat] = useState("");
-  const [nama_perusahaan, setNama_perusahaan] = useState("");
-  const [telp, setTelp] = useState("");
+interface ReklameBodyType {
+  id_reg: number;
+  detailForm: ReklameDetailType["detail"];
+}
+
+const MutateReklameModal = ({
+  setShowModal,
+  showModal,
+  reklame_id,
+}: ReklameModalProps) => {
+  console.log(reklame_id);
+
+  useEffect(() => {
+    if (reklame_id) {
+      customFetch("/api/permohonan/view/" + reklame_id).then((res) => {
+        const currentData: ReklameDetailType = res;
+
+        setBunyi_reklame(currentData.detail[0].value);
+        setJenis_reklame(currentData.detail[1].value);
+        setAreaPemasangan(currentData.detail[2].value);
+        setPanjang_reklame(currentData.detail[3].value);
+        setLebar_reklame(currentData.detail[4].value);
+        setJumlah_muka(currentData.detail[5].value);
+        setLama_pemasangan(currentData.detail[6].value);
+        setTgl_mulai(currentData.detail[7].value);
+        setTgl_akhir(currentData.detail[8].value);
+        setTempat_pemasangan(currentData.detail[9].value);
+        setTitik_koordinat(currentData.detail[10].value);
+      });
+    }
+  }, [reklame_id]);
+
+  const [area_pemasangan, setAreaPemasangan] = useState("");
   const [bunyi_reklame, setBunyi_reklame] = useState("");
   const [jenis_reklame, setJenis_reklame] = useState("");
-  const [jumlah_ukuran, setJumlah_ukuran] = useState("");
+  const [jumlah_muka, setJumlah_muka] = useState("");
   const [panjang_reklame, setPanjang_reklame] = useState("");
   const [lebar_reklame, setLebar_reklame] = useState("");
   const [lama_pemasangan, setLama_pemasangan] = useState("");
@@ -22,27 +54,9 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
   const [titik_koordinat, setTitik_koordinat] = useState("");
 
   const handleAddReklame = async () => {
-    const body = {
+    const body: ReklameBodyType = {
       id_reg: 2,
       detailForm: [
-        {
-          label: "Alamat",
-          form_type: 1,
-          kode_isian: "ALAMAT",
-          value: alamat,
-        },
-        {
-          label: "Nama Perusahaan",
-          form_type: 1,
-          kode_isian: "NAMA_PERUSAHAAN",
-          value: "CV Maiharta",
-        },
-        {
-          label: "No. Telp/HP",
-          form_type: 1,
-          kode_isian: "HP/TELP",
-          value: telp,
-        },
         {
           label: "Bunyi Reklame",
           form_type: 1,
@@ -56,10 +70,28 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
           value: jenis_reklame,
         },
         {
-          label: "Jumlah dan Ukuran",
+          label: "Area Pemasangan",
           form_type: 1,
-          kode_isian: "JUMLAH_UKURAN",
-          value: `${parseInt(panjang_reklame) * parseInt(lebar_reklame)}`,
+          kode_isian: "AREA_PEMASANGAN",
+          value: area_pemasangan,
+        },
+        {
+          label: "Panjang Reklame",
+          form_type: 1,
+          kode_isian: "PANJANG_REKLAME",
+          value: panjang_reklame,
+        },
+        {
+          label: "Lebar Reklame",
+          form_type: 1,
+          kode_isian: "LEBAR_REKLAME",
+          value: lebar_reklame,
+        },
+        {
+          label: "Jumlah Muka Reklame",
+          form_type: 1,
+          kode_isian: "JUMLAH_MUKA",
+          value: jumlah_muka,
         },
         {
           label: "Lama Pemasangan",
@@ -111,7 +143,7 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
         <div className="relative bg-white md:w-[70vw] w-screen rounded-lg shadow dark:bg-gray-700">
           <div className="flex justify-between items-start p-5 py-7 rounded-t border-b dark:border-gray-600">
             <h3 className="text-2xl font-semibold text-gray-900">
-              Tambah Reklame
+              Edit Reklame
             </h3>
             <button
               onClick={() => setShowModal(false)}
@@ -144,6 +176,7 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                 </label>
                 <textarea
                   onChange={(e) => setBunyi_reklame(e.target.value)}
+                  value={bunyi_reklame}
                   placeholder="Masukan bunyi reklame..."
                   className="w-full hover:bg-secondary rounded-md border px-7 h-20 border-grey"
                 ></textarea>
@@ -153,6 +186,7 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                   Jenis Reklame
                 </label>
                 <input
+                  value={jenis_reklame}
                   onChange={(e) => setJenis_reklame(e.target.value)}
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="text"
@@ -164,7 +198,8 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                   Area Pemasangan
                 </label>
                 <input
-                  onChange={(e) => setAlamat(e.target.value)}
+                  value={area_pemasangan}
+                  onChange={(e) => setAreaPemasangan(e.target.value)}
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="text"
                   placeholder="Masukan area pemasangan reklame..."
@@ -175,6 +210,7 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                   Panjang Reklame
                 </label>
                 <input
+                  value={panjang_reklame}
                   onChange={(e) => setPanjang_reklame(e.target.value)}
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="number"
@@ -186,6 +222,7 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                   Lebar Reklame
                 </label>
                 <input
+                  value={lebar_reklame}
                   onChange={(e) => setLebar_reklame(e.target.value)}
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="number"
@@ -197,6 +234,8 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                   Jumlah Muka Reklame
                 </label>
                 <input
+                  value={jumlah_muka}
+                  onChange={(e) => setJumlah_muka(e.target.value)}
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="number"
                   placeholder="Masukan jumlah muka reklame..."
@@ -207,6 +246,7 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                   Lama Pemasangan
                 </label>
                 <input
+                  value={lama_pemasangan}
                   onChange={(e) => setLama_pemasangan(e.target.value)}
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="text"
@@ -218,6 +258,7 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                   Tanggal Mulai Pemasangan
                 </label>
                 <input
+                  value={tgl_mulai}
                   onChange={(e) => setTgl_mulai(e.target.value)}
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="date"
@@ -229,6 +270,7 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                   Tanggal Akhir Pemasangan
                 </label>
                 <input
+                  value={tgl_akhir}
                   onChange={(e) => setTgl_akhir(e.target.value)}
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="date"
@@ -240,6 +282,7 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                   Tempat Pemasangan
                 </label>
                 <input
+                  value={tempat_pemasangan}
                   onChange={(e) => setTempat_pemasangan(e.target.value)}
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="text"
@@ -251,6 +294,7 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                   Titik Koordinat Pemasangan
                 </label>
                 <input
+                  value={titik_koordinat}
                   onChange={(e) => setTitik_koordinat(e.target.value)}
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="text"
@@ -277,4 +321,4 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
   );
 };
 
-export default ReklameModal;
+export default MutateReklameModal;

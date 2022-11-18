@@ -7,6 +7,7 @@ import ListReklame from "../components/RegistrationForm/ListReklame";
 import ReklameModal from "../components/RegistrationForm/ReklameModal";
 import { Link } from "react-router-dom";
 import dataMutation from "../utils/dataMutation";
+import useFetch from "../utils/useFetch";
 
 const RegistrationForm = () => {
   const [showModal, setShowModal] = useState(false);
@@ -61,7 +62,7 @@ const RegistrationForm = () => {
       />
 
       {/* List Reklame */}
-      <ListReklame data={data} setShowModal={setShowModal} />
+      {/* <ListReklame data={data} setShowModal={setShowModal} /> */}
 
       <div className="flex justify-end mx-7 gap-7">
         <button className="bg-white border border-primary mb-5 font-semibold flex justify-center items-center gap-3 text-primary rounded-md w-40 h-12">
@@ -77,7 +78,7 @@ const RegistrationForm = () => {
 
       {/* Insert Reklame Modal */}
 
-      <ReklameModal setShowModal={setShowModal} showModal={showModal} />
+      {/* <ReklameModal setShowModal={setShowModal} showModal={showModal} /> */}
     </Layouts>
   );
 };

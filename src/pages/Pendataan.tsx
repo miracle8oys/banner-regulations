@@ -1,13 +1,16 @@
 import Layouts from "../components/layouts";
-import data from "../utils/deadlineReklame.json";
+// import data from "../utils/deadlineReklame.json";
 import { useState } from "react";
 import PendataanHeader from "../components/Pendataan/PendataanHeader";
 import PendataanContent from "../components/Pendataan/PendataanContent";
+import useFetch from "../utils/useFetch";
 
 const Pendataan = () => {
   const [showData, setShowData] = useState(11);
   const [totalData, setTotalData] = useState(20);
   const [page, setPage] = useState(1);
+
+  const { data }: { data: any } = useFetch("/api/reklame", 0);
 
   const changePages = (changes: "PREV" | "NEXT") => {
     if (changes === "PREV") {

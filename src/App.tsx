@@ -15,7 +15,7 @@ function App() {
           <Route path="/pendataan" element={<Pendataan />} />
           <Route path="/registrasi" element={<RegistrationForm />} />
           <Route path="/pembayaran" element={<Pembayaran />} />
-          <Route path="/edit" element={<EditForm />} />
+          <Route path="/edit/:id" element={<EditForm />} />
         </Routes>
       </BrowserRouter>
     </div>
