@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { ReklameType } from "../../utils/dataInterface";
 import PendataanList from "./PendataanList";
 
 interface PendataanContentProps {
-  data: any;
+  data: Array<ReklameType>;
+  page: number;
+  showData: number;
 }
 
-const PendataanContent = ({ data }: PendataanContentProps) => {
+const PendataanContent = ({ data, page, showData }: PendataanContentProps) => {
   const [showModal, setShowModal] = useState(0);
 
   return (
@@ -16,44 +19,38 @@ const PendataanContent = ({ data }: PendataanContentProps) => {
             <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
               No
             </th>
-            <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
+            <th scope="col" className="py-3 md:px-5 px-2 w-2/12">
               No Registrasi
             </th>
-            <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
+            <th scope="col" className="py-3 md:px-5 px-2 w-2/12">
               Nama Perusahaan
             </th>
-            <th scope="col" className="py-3 md:px-5 px-2 w-10/12">
-              <table className="w-max md:w-full">
-                <thead>
-                  <tr>
-                    <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
-                      Jenis Reklame
-                    </th>
-                    <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
-                      Tempat Pemasangan
-                    </th>
-                    <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
-                      Akhir Pemasangan
-                    </th>
-                    <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
-                      Status
-                    </th>
-                    <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
-                      <p className="w-full">Opsi</p>
-                    </th>
-                  </tr>
-                </thead>
-              </table>
+            <th scope="col" className="py-3 md:px-5 px-2 w-2/12">
+              Jenis Reklame
+            </th>
+            <th scope="col" className="py-3 md:px-5 px-2 w-2/12">
+              Tempat Pemasangan
+            </th>
+            <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
+              Akhir Pemasangan
+            </th>
+            <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
+              Status
+            </th>
+            <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
+              <p className="w-full">Opsi</p>
             </th>
           </tr>
         </thead>
         <tbody className="overflow-y-auto font-medium">
-          {data.map((i: any, n: number) => (
+          {data.map((i, n: number) => (
             <PendataanList
               i={i}
               n={n}
               key={n}
               showModal={showModal}
+              page={page}
+              showData={showData}
               setShowModal={setShowModal}
             />
           ))}

@@ -29,14 +29,12 @@ const Pembayaran = () => {
       {/* Form Register */}
       <FormRegister
         alamat_perusahaan={alamat_perusahaan}
-        expired_date={expired_date}
         nama_reg={nama_reg}
         nik_reg={nik_reg}
         npwp_reg={npwp_reg}
         no_telp={no_telp}
         nama_perusahaan={nama_perusahaan}
         setAlamat_perusahaan={setAlamat_perusahaan}
-        setExpired_date={setExpired_date}
         setNik_reg={setNik_reg}
         setNo_telp={setNo_telp}
         setNama_perusahaan={setNama_perusahaan}

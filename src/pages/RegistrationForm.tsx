@@ -1,23 +1,19 @@
 import Layouts from "../components/layouts";
 import { useState } from "react";
 import { IoChevronBackSharp } from "react-icons/io5";
-import data from "../utils/deadlineReklame.json";
 import FormRegister from "../components/RegistrationForm/FormRegister";
-import ListReklame from "../components/RegistrationForm/ListReklame";
-import ReklameModal from "../components/RegistrationForm/ReklameModal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import dataMutation from "../utils/dataMutation";
-import useFetch from "../utils/useFetch";
 
 const RegistrationForm = () => {
-  const [showModal, setShowModal] = useState(false);
   const [nama_reg, setNama_reg] = useState("");
   const [nik_reg, setNik_reg] = useState("");
   const [npwp_reg, setNpwp_reg] = useState("");
   const [nama_perusahaan, setNama_perusahaan] = useState("");
   const [alamat_perusahaan, setAlamat_perusahaan] = useState("");
   const [no_telp, setNo_telp] = useState("");
-  const [expired_date, setExpired_date] = useState("2022-12-25");
+
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     const body = {
@@ -27,11 +23,11 @@ const RegistrationForm = () => {
       nama_perusahaan,
       alamat_perusahaan,
       no_telp,
-      expired_date,
     };
 
     const res = await dataMutation("/api/reklame", body, "POST");
-    console.log(res);
+    console.log(res.data.id);
+    navigate("/edit/" + res.data.id);
   };
 
   return (
@@ -46,14 +42,12 @@ const RegistrationForm = () => {
       {/* Form Register */}
       <FormRegister
         alamat_perusahaan={alamat_perusahaan}
-        expired_date={expired_date}
         nama_reg={nama_reg}
         nik_reg={nik_reg}
         npwp_reg={npwp_reg}
         no_telp={no_telp}
         nama_perusahaan={nama_perusahaan}
         setAlamat_perusahaan={setAlamat_perusahaan}
-        setExpired_date={setExpired_date}
         setNik_reg={setNik_reg}
         setNo_telp={setNo_telp}
         setNama_perusahaan={setNama_perusahaan}

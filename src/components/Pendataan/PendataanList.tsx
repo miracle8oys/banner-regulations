@@ -1,10 +1,15 @@
-import { BsThreeDots } from "react-icons/bs";
-import OptionModal from "./OptionModal";
 import { useState } from "react";
+import { BsThreeDots } from "react-icons/bs";
+import { ReklameType } from "../../utils/dataInterface";
+import dataMutation from "../../utils/dataMutation";
+import DeleteConfirmModal from "../layouts/DeleteConfirmModal";
+import OptionModal from "./OptionModal";
 
 interface PendataanListProps {
-  i: any;
+  i: ReklameType;
   n: number;
+  page: number;
+  showData: number;
   setShowModal: React.Dispatch<React.SetStateAction<number>>;
   showModal: number;
 }
@@ -13,83 +18,64 @@ const PendataanList = ({
   n,
   setShowModal,
   showModal,
+  page,
+  showData,
 }: PendataanListProps) => {
+  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
+
+  const handleDeleteReklame = async (id: number) => {
+    const res = await dataMutation(
+      "/api/reklame/delete-reklame/" + id,
+      {},
+      "DELETE"
+    );
+    console.log(res);
+  };
+
   return (
     <tr
       key={n}
       onClickCapture={() => setShowModal(0)}
       className="bg-white dark:bg-gray-800 border-l border-b border-2"
     >
-      <th
-        scope="row"
-        className="py-4 md:px-5 px-2 w-1/12 font-medium text-gray-900 whitespace-nowrap"
-      >
-        {n + 1}
-      </th>
-      <td className="py-4 md:px-5 px-2 w-1/12">{i.no_reg}</td>
-      <td className="py-4 md:px-5 px-2 w-1/12">{i.nama_perusahaan}</td>
-      <td className="w-10/12">
-        {i.reklame.length > 0 &&
-          i.reklame.map((eachReklame: any, y: number) => (
-            <table key={y} className="w-max md:w-full border-x border-b">
-              <tbody>
-                <tr>
-                  <td className="py-4 md:px-5 px-2 w-2/12">
-                    {eachReklame.detail[4].value}
-                  </td>
-                  <td className="py-4 md:px-5 px-2 w-2/12 text-left">
-                    {eachReklame.detail[9].value}
-                  </td>
-                  <td className="py-4 md:px-5 px-2 w-2/12">
-                    {eachReklame.detail[8].value}
-                  </td>
-                  <td className="py-4 md:px-5 px-2 w-2/12 text-center">
-                    <p className="bg-primary rounded-full w-full font-semibold py-1">
-                      Belum Berizin
-                    </p>
-                  </td>
-                  <td className="py-4 md:px-5 px-2 w-2/12 relative text-center">
-                    <BsThreeDots
-                      className="w-full hover:text-primary text-2xl"
-                      onClickCapture={() => setShowModal(n + 1)}
-                    />
-                    <div className="top-0 right-0 absolute">
-                      <OptionModal
-                        transaction_id={n + 1}
-                        setShowModal={setShowModal}
-                        showModal={showModal}
-                      />
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          ))}
+      <td className="py-3 md:px-5 px-2 w-1/12">
+        {(page - 1) * showData + (n + 1)}
       </td>
-      {/* <td className="py-4 md:px-5 px-2 w-1/12">{i.jenis_reklame}</td>
-      <td className="py-4 md:px-5 px-2 md:w-2/12 w-96 text-left">
-        {i.tempat_Pemasangan}
-      </td>
-      <td className="py-4 md:px-5 px-2 w-1/12">{i.wajib_pajak}</td>
-      <td className="py-4 md:px-5 px-2 w-1/12">{i.akhir_pemasangan}</td>
-      <td className="py-4 md:px-5 px-2 md:w-1/12 w-2/12 text-center">
+      <td className="py-3 md:px-5 px-2 w-2/12">{i.no_registrasi}</td>
+      <td className="py-3 md:px-5 px-2 w-2/12">{i.nama_perusahaan}</td>
+      <td className="py-3 md:px-5 px-2 w-2/12">{i.jenis_reklame}</td>
+      <td className="py-3 md:px-5 px-2 w-2/12">{i.tempat_pemasangan}</td>
+      <td className="py-3 md:px-5 px-2 w-1/12">{i.tgl_akhir}</td>
+      <td className="py-3 md:px-5 px-2 w-1/12">
         <p className="bg-primary rounded-full w-full font-semibold py-1">
           {i.status}
         </p>
       </td>
-      <td className="py-4 md:px-5 px-2 w-1/12 relative">
+      <td className="py-3 md:px-5 px-2 w-1/12">
         <BsThreeDots
           className="w-full hover:text-primary text-2xl"
-          onClickCapture={() => setShowModal(n + 1)}
+          onClickCapture={() => setShowModal(i.id_registrasi!)}
         />
-        <div className="top-0 right-0 absolute">
+        <div className="right-12 absolute z-50">
           <OptionModal
-            transaction_id={n + 1}
+            registration_id={i.id_registrasi!}
+            reklame_id={i.id!}
             setShowModal={setShowModal}
             showModal={showModal}
+            setShowConfirmDeleteModal={setShowConfirmDeleteModal}
+            showConfirmDeleteModal={showConfirmDeleteModal}
           />
         </div>
-      </td> */}
+      </td>
+      {showConfirmDeleteModal && (
+        <td>
+          <DeleteConfirmModal
+            handleSubmit={handleDeleteReklame}
+            id={i.id!}
+            setShowConfirmModal={setShowConfirmDeleteModal}
+          />
+        </td>
+      )}
     </tr>
   );
 };

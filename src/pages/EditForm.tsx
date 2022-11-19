@@ -55,7 +55,11 @@ const EditForm = () => {
       expired_date,
     };
 
-    const res = await dataMutation("/api/reklame" + id, body, "PUT");
+    const res = await dataMutation(
+      "/api/reklame/update-registrasi/" + id,
+      body,
+      "PUT"
+    );
     console.log(res);
   };
 
@@ -111,7 +115,12 @@ const EditForm = () => {
 
       {/* Insert Reklame Modal */}
 
-      <ReklameModal setShowModal={setShowModal} showModal={showModal} />
+      <ReklameModal
+        id_register={parseInt(id!)}
+        setShowModal={setShowModal}
+        showModal={showModal}
+      />
+
       {showConfirmModal && (
         <ConfirmModal
           setShowConfirmModal={setShowConfirmModal}

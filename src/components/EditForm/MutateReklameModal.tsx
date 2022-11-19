@@ -26,107 +26,158 @@ const MutateReklameModal = ({
       customFetch("/api/permohonan/view/" + reklame_id).then((res) => {
         const currentData: ReklameDetailType = res;
 
-        setBunyi_reklame(currentData.detail[0].value);
-        setJenis_reklame(currentData.detail[1].value);
-        setAreaPemasangan(currentData.detail[2].value);
-        setPanjang_reklame(currentData.detail[3].value);
-        setLebar_reklame(currentData.detail[4].value);
-        setJumlah_muka(currentData.detail[5].value);
-        setLama_pemasangan(currentData.detail[6].value);
-        setTgl_mulai(currentData.detail[7].value);
-        setTgl_akhir(currentData.detail[8].value);
-        setTempat_pemasangan(currentData.detail[9].value);
-        setTitik_koordinat(currentData.detail[10].value);
+        setBunyi_reklame({
+          value: currentData.detail[0].value,
+          id: currentData.detail[0].id!,
+        });
+        setJenis_reklame({
+          value: currentData.detail[1].value,
+          id: currentData.detail[1].id!,
+        });
+        setAreaPemasangan({
+          value: currentData.detail[2].value,
+          id: currentData.detail[2].id!,
+        });
+        setPanjang_reklame({
+          value: currentData.detail[3].value,
+          id: currentData.detail[3].id!,
+        });
+        setLebar_reklame({
+          value: currentData.detail[4].value,
+          id: currentData.detail[4].id!,
+        });
+        setJumlah_muka({
+          value: currentData.detail[5].value,
+          id: currentData.detail[5].id!,
+        });
+        setLama_pemasangan({
+          value: currentData.detail[6].value,
+          id: currentData.detail[6].id!,
+        });
+        setTgl_mulai({
+          value: currentData.detail[7].value,
+          id: currentData.detail[7].id!,
+        });
+        setTgl_akhir({
+          value: currentData.detail[8].value,
+          id: currentData.detail[8].id!,
+        });
+        setTempat_pemasangan({
+          value: currentData.detail[9].value,
+          id: currentData.detail[9].id!,
+        });
+        setTitik_koordinat({
+          value: currentData.detail[10].value,
+          id: currentData.detail[10].id!,
+        });
       });
     }
   }, [reklame_id]);
 
-  const [area_pemasangan, setAreaPemasangan] = useState("");
-  const [bunyi_reklame, setBunyi_reklame] = useState("");
-  const [jenis_reklame, setJenis_reklame] = useState("");
-  const [jumlah_muka, setJumlah_muka] = useState("");
-  const [panjang_reklame, setPanjang_reklame] = useState("");
-  const [lebar_reklame, setLebar_reklame] = useState("");
-  const [lama_pemasangan, setLama_pemasangan] = useState("");
-  const [tgl_mulai, setTgl_mulai] = useState("");
-  const [tgl_akhir, setTgl_akhir] = useState("");
-  const [tempat_pemasangan, setTempat_pemasangan] = useState("");
-  const [titik_koordinat, setTitik_koordinat] = useState("");
+  const [area_pemasangan, setAreaPemasangan] = useState({ id: 0, value: "" });
+  const [bunyi_reklame, setBunyi_reklame] = useState({ id: 0, value: "" });
+  const [jenis_reklame, setJenis_reklame] = useState({ id: 0, value: "" });
+  const [jumlah_muka, setJumlah_muka] = useState({ id: 0, value: "" });
+  const [panjang_reklame, setPanjang_reklame] = useState({ id: 0, value: "" });
+  const [lebar_reklame, setLebar_reklame] = useState({ id: 0, value: "" });
+  const [lama_pemasangan, setLama_pemasangan] = useState({ id: 0, value: "" });
+  const [tgl_mulai, setTgl_mulai] = useState({ id: 0, value: "" });
+  const [tgl_akhir, setTgl_akhir] = useState({ id: 0, value: "" });
+  const [tempat_pemasangan, setTempat_pemasangan] = useState({
+    id: 0,
+    value: "",
+  });
+  const [titik_koordinat, setTitik_koordinat] = useState({ id: 0, value: "" });
 
   const handleAddReklame = async () => {
     const body: ReklameBodyType = {
-      id_reg: 2,
+      id_reg: 3,
       detailForm: [
         {
+          id: bunyi_reklame.id,
           label: "Bunyi Reklame",
           form_type: 1,
           kode_isian: "BUNYI_REKLAME",
-          value: bunyi_reklame,
+          value: bunyi_reklame.value,
         },
         {
+          id: jenis_reklame.id,
           label: "Jenis Reklame",
           form_type: 1,
           kode_isian: "JENIS_REKLAME",
-          value: jenis_reklame,
+          value: jenis_reklame.value,
         },
         {
+          id: area_pemasangan.id,
           label: "Area Pemasangan",
           form_type: 1,
           kode_isian: "AREA_PEMASANGAN",
-          value: area_pemasangan,
+          value: area_pemasangan.value,
         },
         {
+          id: panjang_reklame.id,
           label: "Panjang Reklame",
           form_type: 1,
           kode_isian: "PANJANG_REKLAME",
-          value: panjang_reklame,
+          value: panjang_reklame.value,
         },
         {
+          id: lebar_reklame.id,
           label: "Lebar Reklame",
           form_type: 1,
           kode_isian: "LEBAR_REKLAME",
-          value: lebar_reklame,
+          value: lebar_reklame.value,
         },
         {
+          id: jumlah_muka.id,
           label: "Jumlah Muka Reklame",
           form_type: 1,
           kode_isian: "JUMLAH_MUKA",
-          value: jumlah_muka,
+          value: jumlah_muka.value,
         },
         {
+          id: lama_pemasangan.id,
           label: "Lama Pemasangan",
           form_type: 1,
           kode_isian: "LAMA_PEMASANGAN",
-          value: lama_pemasangan,
+          value: lama_pemasangan.value,
         },
         {
+          id: tgl_mulai.id,
           label: "Tanggal Mulai Pemasangan",
           form_type: 1,
           kode_isian: "TGL_MULAI",
-          value: tgl_mulai,
+          value: tgl_mulai.value,
         },
         {
+          id: tgl_akhir.id,
           label: "Tanggal Akhir Pemasangan",
           form_type: 1,
           kode_isian: "TGL_AKHIR",
-          value: tgl_akhir,
+          value: tgl_akhir.value,
         },
         {
+          id: tempat_pemasangan.id,
           label: "Tempat Pemasangan",
           form_type: 1,
           kode_isian: "TEMPAT_PEMASANGAN",
-          value: tempat_pemasangan,
+          value: tempat_pemasangan.value,
         },
         {
+          id: titik_koordinat.id,
           label: "Titik Koordinat Pemasangan",
           form_type: 1,
           kode_isian: "TITIK_KOORDINAT",
-          value: titik_koordinat,
+          value: titik_koordinat.value,
         },
       ],
     };
 
-    const res = await dataMutation("/api/reklame/add-reklame", body, "POST");
+    const res = await dataMutation(
+      "/api/reklame/update-reklame/" + reklame_id,
+      body,
+      "PUT"
+    );
     console.log(res);
   };
 
@@ -175,8 +226,13 @@ const MutateReklameModal = ({
                   Bunyi Reklame
                 </label>
                 <textarea
-                  onChange={(e) => setBunyi_reklame(e.target.value)}
-                  value={bunyi_reklame}
+                  onChange={(e) =>
+                    setBunyi_reklame((current) => ({
+                      id: current.id,
+                      value: e.target.value,
+                    }))
+                  }
+                  value={bunyi_reklame.value}
                   placeholder="Masukan bunyi reklame..."
                   className="w-full hover:bg-secondary rounded-md border px-7 h-20 border-grey"
                 ></textarea>
@@ -186,8 +242,13 @@ const MutateReklameModal = ({
                   Jenis Reklame
                 </label>
                 <input
-                  value={jenis_reklame}
-                  onChange={(e) => setJenis_reklame(e.target.value)}
+                  value={jenis_reklame.value}
+                  onChange={(e) =>
+                    setJenis_reklame((current) => ({
+                      id: current.id,
+                      value: e.target.value,
+                    }))
+                  }
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="text"
                   placeholder="Pilih jenis reklame..."
@@ -198,8 +259,13 @@ const MutateReklameModal = ({
                   Area Pemasangan
                 </label>
                 <input
-                  value={area_pemasangan}
-                  onChange={(e) => setAreaPemasangan(e.target.value)}
+                  value={area_pemasangan.value}
+                  onChange={(e) =>
+                    setAreaPemasangan((current) => ({
+                      id: current.id,
+                      value: e.target.value,
+                    }))
+                  }
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="text"
                   placeholder="Masukan area pemasangan reklame..."
@@ -210,8 +276,13 @@ const MutateReklameModal = ({
                   Panjang Reklame
                 </label>
                 <input
-                  value={panjang_reklame}
-                  onChange={(e) => setPanjang_reklame(e.target.value)}
+                  value={panjang_reklame.value}
+                  onChange={(e) =>
+                    setPanjang_reklame((current) => ({
+                      id: current.id,
+                      value: e.target.value,
+                    }))
+                  }
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="number"
                   placeholder="Masukan panjang reklame..."
@@ -222,8 +293,13 @@ const MutateReklameModal = ({
                   Lebar Reklame
                 </label>
                 <input
-                  value={lebar_reklame}
-                  onChange={(e) => setLebar_reklame(e.target.value)}
+                  value={lebar_reklame.value}
+                  onChange={(e) =>
+                    setLebar_reklame((current) => ({
+                      id: current.id,
+                      value: e.target.value,
+                    }))
+                  }
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="number"
                   placeholder="Masukan Lebar reklame..."
@@ -234,8 +310,13 @@ const MutateReklameModal = ({
                   Jumlah Muka Reklame
                 </label>
                 <input
-                  value={jumlah_muka}
-                  onChange={(e) => setJumlah_muka(e.target.value)}
+                  value={jumlah_muka.value}
+                  onChange={(e) =>
+                    setJumlah_muka((current) => ({
+                      id: current.id,
+                      value: e.target.value,
+                    }))
+                  }
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="number"
                   placeholder="Masukan jumlah muka reklame..."
@@ -246,8 +327,13 @@ const MutateReklameModal = ({
                   Lama Pemasangan
                 </label>
                 <input
-                  value={lama_pemasangan}
-                  onChange={(e) => setLama_pemasangan(e.target.value)}
+                  value={lama_pemasangan.value}
+                  onChange={(e) =>
+                    setLama_pemasangan((current) => ({
+                      id: current.id,
+                      value: e.target.value,
+                    }))
+                  }
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="text"
                   placeholder="Masukan lama pemasangan reklame..."
@@ -258,8 +344,13 @@ const MutateReklameModal = ({
                   Tanggal Mulai Pemasangan
                 </label>
                 <input
-                  value={tgl_mulai}
-                  onChange={(e) => setTgl_mulai(e.target.value)}
+                  value={tgl_mulai.value}
+                  onChange={(e) =>
+                    setTgl_mulai((current) => ({
+                      id: current.id,
+                      value: e.target.value,
+                    }))
+                  }
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="date"
                   placeholder="Masukan tanggal mulai pemasangan reklame..."
@@ -270,8 +361,13 @@ const MutateReklameModal = ({
                   Tanggal Akhir Pemasangan
                 </label>
                 <input
-                  value={tgl_akhir}
-                  onChange={(e) => setTgl_akhir(e.target.value)}
+                  value={tgl_akhir.value}
+                  onChange={(e) =>
+                    setTgl_akhir((current) => ({
+                      id: current.id,
+                      value: e.target.value,
+                    }))
+                  }
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="date"
                   placeholder="Masukan tanggal akhir pemasangan reklame..."
@@ -282,8 +378,13 @@ const MutateReklameModal = ({
                   Tempat Pemasangan
                 </label>
                 <input
-                  value={tempat_pemasangan}
-                  onChange={(e) => setTempat_pemasangan(e.target.value)}
+                  value={tempat_pemasangan.value}
+                  onChange={(e) =>
+                    setTempat_pemasangan((current) => ({
+                      id: current.id,
+                      value: e.target.value,
+                    }))
+                  }
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="text"
                   placeholder="Masukan tempat pemasangan reklame..."
@@ -294,8 +395,13 @@ const MutateReklameModal = ({
                   Titik Koordinat Pemasangan
                 </label>
                 <input
-                  value={titik_koordinat}
-                  onChange={(e) => setTitik_koordinat(e.target.value)}
+                  value={titik_koordinat.value}
+                  onChange={(e) =>
+                    setTitik_koordinat((current) => ({
+                      id: current.id,
+                      value: e.target.value,
+                    }))
+                  }
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="text"
                   placeholder="Masukan titik koordinat pemasangan reklame..."

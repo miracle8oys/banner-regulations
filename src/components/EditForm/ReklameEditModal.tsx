@@ -23,7 +23,7 @@ const ReklameEditModal = ({
       }  overflow-y-auto overflow-x-hidden z-50 md:inset-0`}
     >
       <div
-        onClick={() => setShowModal(0)}
+        onClickCapture={() => setShowModal(reklame_id)}
         className="relative p-4 flex justify-end text-lg font-medium"
       >
         <div className="relative bg-secondary shadow-md w-40 pl-3 md:mr-40 mr-28 pt-2 h-24 rounded dark:bg-gray-700">

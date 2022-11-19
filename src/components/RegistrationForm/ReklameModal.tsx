@@ -4,15 +4,18 @@ import dataMutation from "../../utils/dataMutation";
 interface ReklameModalProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   showModal: boolean;
+  id_register: number;
 }
 
-const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
-  const [alamat, setAlamat] = useState("");
-  const [nama_perusahaan, setNama_perusahaan] = useState("");
-  const [telp, setTelp] = useState("");
+const ReklameModal = ({
+  setShowModal,
+  showModal,
+  id_register,
+}: ReklameModalProps) => {
+  const [jumlah_muka, setjumlah_muka] = useState("");
+  const [area_pemasangan, setArea_pemasangan] = useState("");
   const [bunyi_reklame, setBunyi_reklame] = useState("");
   const [jenis_reklame, setJenis_reklame] = useState("");
-  const [jumlah_ukuran, setJumlah_ukuran] = useState("");
   const [panjang_reklame, setPanjang_reklame] = useState("");
   const [lebar_reklame, setLebar_reklame] = useState("");
   const [lama_pemasangan, setLama_pemasangan] = useState("");
@@ -23,26 +26,8 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
 
   const handleAddReklame = async () => {
     const body = {
-      id_reg: 2,
+      id_reg: id_register,
       detailForm: [
-        {
-          label: "Alamat",
-          form_type: 1,
-          kode_isian: "ALAMAT",
-          value: alamat,
-        },
-        {
-          label: "Nama Perusahaan",
-          form_type: 1,
-          kode_isian: "NAMA_PERUSAHAAN",
-          value: "CV Maiharta",
-        },
-        {
-          label: "No. Telp/HP",
-          form_type: 1,
-          kode_isian: "HP/TELP",
-          value: telp,
-        },
         {
           label: "Bunyi Reklame",
           form_type: 1,
@@ -56,10 +41,28 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
           value: jenis_reklame,
         },
         {
-          label: "Jumlah dan Ukuran",
+          label: "Area Pemasangan",
           form_type: 1,
-          kode_isian: "JUMLAH_UKURAN",
-          value: `${parseInt(panjang_reklame) * parseInt(lebar_reklame)}`,
+          kode_isian: "AREA_PEMASANGAN",
+          value: area_pemasangan,
+        },
+        {
+          label: "Panjang Reklame",
+          form_type: 1,
+          kode_isian: "PANJANG_REKLAME",
+          value: panjang_reklame,
+        },
+        {
+          label: "Lebar Reklame",
+          form_type: 1,
+          kode_isian: "LEBAR_REKLAME",
+          value: lebar_reklame,
+        },
+        {
+          label: "Jumlah Muka Reklame",
+          form_type: 1,
+          kode_isian: "JUMLAH_MUKA",
+          value: jumlah_muka,
         },
         {
           label: "Lama Pemasangan",
@@ -164,7 +167,7 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                   Area Pemasangan
                 </label>
                 <input
-                  onChange={(e) => setAlamat(e.target.value)}
+                  onChange={(e) => setArea_pemasangan(e.target.value)}
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="text"
                   placeholder="Masukan area pemasangan reklame..."
@@ -197,6 +200,7 @@ const ReklameModal = ({ setShowModal, showModal }: ReklameModalProps) => {
                   Jumlah Muka Reklame
                 </label>
                 <input
+                  onChange={(e) => setjumlah_muka(e.target.value)}
                   className="w-full hover:bg-secondary rounded-md border px-7 h-12 border-grey"
                   type="number"
                   placeholder="Masukan jumlah muka reklame..."

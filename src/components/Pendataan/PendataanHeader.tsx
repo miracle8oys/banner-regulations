@@ -4,16 +4,29 @@ import { Link } from "react-router-dom";
 interface HeaderProps {
   setShowData: React.Dispatch<React.SetStateAction<number>>;
   showData: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setStatusIzin: React.Dispatch<React.SetStateAction<string>>;
+  statusIzin: string;
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
+  keyword: string;
 }
 
-const PendataanHeader = ({ setShowData, showData }: HeaderProps) => {
+const PendataanHeader = ({
+  setShowData,
+  showData,
+  setPage,
+  keyword,
+  setKeyword,
+  setStatusIzin,
+  statusIzin,
+}: HeaderProps) => {
   return (
     <>
       <div className="py-5 flex gap-3 justify-between flex-col md:flex-row md:text-base text-sm">
         <Link to="/registrasi">
           <button className="bg-primary md:font-semibold font-medium flex justify-center items-center gap-3 text-white rounded md:w-40 w-full md:h-12 h-10">
             <BsPlusLg />
-            <span>Tambah Data</span>
+            <span>Registrasi Baru</span>
           </button>
         </Link>
 
@@ -26,6 +39,10 @@ const PendataanHeader = ({ setShowData, showData }: HeaderProps) => {
           </label>
           <div className="relative">
             <input
+              onChange={(e) => {
+                setPage(1);
+                setKeyword(e.target.value);
+              }}
               type="search"
               id="default-search"
               className="block py-3 pl-5 md:w-96 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-grey focus:ring-blue-500 focus:border-blue-500"
@@ -58,8 +75,13 @@ const PendataanHeader = ({ setShowData, showData }: HeaderProps) => {
         <div className="flex gap-1">
           <p className="pr-2">Menampilkan</p>
           <input
-            value={showData}
-            onChange={(e) => setShowData(e.target.valueAsNumber)}
+            defaultValue={showData}
+            onChange={(e) => {
+              setShowData(
+                !isNaN(e.target.valueAsNumber) ? e.target.valueAsNumber : 1
+              );
+              setPage(1);
+            }}
             className="border rounded w-12 h-7"
             type="number"
           />
@@ -68,13 +90,25 @@ const PendataanHeader = ({ setShowData, showData }: HeaderProps) => {
         <div className="flex gap-3">
           <div className="relative">
             <select
+              onChange={(e) => {
+                setStatusIzin(e.target.value);
+                setPage(1);
+              }}
               id="countries"
               className="bg-gray-50 pl-7 border border-primary text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-52 w-40 h-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
             >
-              <option className="text-center">Semua Data</option>
-              <option className="text-center">Reklame Belum Berizin</option>
-              <option className="text-center">Reklame Proses Izin</option>
-              <option className="text-center">Reklame Sudah Berizin</option>
+              <option value="" className="text-center">
+                Semua Data
+              </option>
+              <option value="belum" className="text-center">
+                Reklame Belum Berizin
+              </option>
+              <option value="proses" className="text-center">
+                Reklame Proses Izin
+              </option>
+              <option value="sudah" className="text-center">
+                Reklame Sudah Berizin
+              </option>
             </select>
             <svg
               className="absolute left-3 top-4"

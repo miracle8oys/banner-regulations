@@ -37,7 +37,10 @@ const EditListReklame = ({
         // onClickCapture={() => setShowReklameModal(0)}
         className="overflow-x-auto relative"
       >
-        <table className="w-max md:w-full text-center text-sm text-gray-500 dark:text-gray-400">
+        <table
+          onClickCapture={() => setShowReklameModal(0)}
+          className="w-max md:w-full text-center text-sm text-gray-500 dark:text-gray-400"
+        >
           <thead className="text-xs font-semibold text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr className="bg-white">
               <th scope="col" className="py-3 md:px-5 px-2 w-1/12">

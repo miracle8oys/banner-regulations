@@ -1,4 +1,33 @@
-const DashboardOverview = () => {
+import { useState, useEffect } from "react";
+interface OverviewProps {
+  data: Array<{
+    status: string;
+    jumlah: number;
+  }>;
+}
+
+const DashboardOverview = ({ data }: OverviewProps) => {
+  const [statusCount, setStatusCount] = useState<{
+    belum: number;
+    sudah: number;
+    proses: number;
+  }>({ belum: 0, proses: 0, sudah: 0 });
+
+  useEffect(() => {
+    data?.forEach((i) => {
+      if (i.status === "belum") {
+        setStatusCount((current) => ({ ...current, belum: i.jumlah }));
+      }
+
+      if (i.status === "proses") {
+        setStatusCount((current) => ({ ...current, proses: i.jumlah }));
+      }
+
+      if (i.status === "sudah") {
+        setStatusCount((current) => ({ ...current, sudah: i.jumlah }));
+      }
+    });
+  }, [data]);
   return (
     <div className="flex flex-col md:flex-row justify-between px-7 gap-5">
       <div className="w-full bg-white rounded-md shadow-md py-5 px-6">
@@ -61,7 +90,7 @@ const DashboardOverview = () => {
         </svg>
         <div className="flex justify-between items-end">
           <p>Reklame Belum Berizin</p>
-          <p className="text-5xl font-semibold">99</p>
+          <p className="text-5xl font-semibold">{statusCount.belum!}</p>
         </div>
       </div>
       <div className="w-full bg-white rounded-md shadow-md py-5 px-6">
@@ -128,7 +157,7 @@ const DashboardOverview = () => {
         </svg>
         <div className="flex justify-between items-end">
           <p>Reklame Proses Izin</p>
-          <p className="text-5xl font-semibold">99</p>
+          <p className="text-5xl font-semibold">{statusCount.proses}</p>
         </div>
       </div>
       <div className="w-full bg-white rounded-md shadow-md py-5 px-6">
@@ -191,7 +220,7 @@ const DashboardOverview = () => {
         </svg>
         <div className="flex justify-between items-end">
           <p>Reklame Sudah Berizin</p>
-          <p className="text-5xl font-semibold">99</p>
+          <p className="text-5xl font-semibold">{statusCount.sudah}</p>
         </div>
       </div>
     </div>

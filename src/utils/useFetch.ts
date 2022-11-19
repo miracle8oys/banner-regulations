@@ -52,7 +52,7 @@ const useFetch = (url: string, changes: number) => {
         return res.json();
       })
       .then((result) => {
-        //setTotalData(result.data.count);
+        setTotalData(result.count);
 
         setData(result.data);
       })

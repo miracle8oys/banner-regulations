@@ -1,16 +1,34 @@
-interface DashboardDeadlineProps {
-  data: any;
-}
+import { useState } from "react";
+import { ReklameType } from "../../utils/dataInterface";
+import useFetch from "../../utils/useFetch";
 
-const DashboardDeadline = ({ data }: DashboardDeadlineProps) => {
+interface DashboardDeadlineProps {}
+
+const DashboardDeadline = () => {
+  const [periodeFilter, setPeriodeFilter] = useState<
+    "bulan ini" | "bulan depan"
+  >("bulan ini");
+
+  const { data } = useFetch(
+    "/api/reklame/list-reklame?sort=tgl_akhir&order=desc&jatuh_tempo=" +
+      periodeFilter,
+    0
+  );
+
   return (
     <div className="bg-white shadow-md rounded-md mx-7 px-6 my-7 pt-5">
       <p className="text-lg font-semibold">Reklame Jatuh Tempo</p>
       <div className="py-5 flex gap-7">
-        <button className="bg-primary font-semibold text-white rounded w-32 h-10">
+        <button
+          onClick={() => setPeriodeFilter("bulan ini")}
+          className="bg-primary font-semibold text-white rounded w-32 h-10"
+        >
           Bulan Ini
         </button>
-        <button className="bg-white border border-primary font-semibold text-primary rounded w-32 h-10">
+        <button
+          onClick={() => setPeriodeFilter("bulan depan")}
+          className="bg-white border border-primary font-semibold text-primary rounded w-32 h-10"
+        >
           Bulan Depan
         </button>
       </div>
@@ -40,7 +58,7 @@ const DashboardDeadline = ({ data }: DashboardDeadlineProps) => {
             </tr>
           </thead>
           <tbody className="overflow-y-auto">
-            {data.map((i: any, n: number) => (
+            {data.map((i: ReklameType, n: number) => (
               <tr key={n} className="bg-white border-t dark:bg-gray-800">
                 <th
                   scope="row"
@@ -51,12 +69,10 @@ const DashboardDeadline = ({ data }: DashboardDeadlineProps) => {
                 <td className="py-4 md:px-5 px-2 w-1/12">{i.no_registrasi}</td>
                 <td className="py-4 md:px-5 px-2 w-1/12">{i.jenis_reklame}</td>
                 <td className="py-4 md:px-5 px-2 md:w-2/12 w-96 text-left">
-                  {i.tempat_Pemasangan}
+                  {i.tempat_pemasangan}
                 </td>
-                <td className="py-4 md:px-5 px-2 w-1/12">{i.wajib_pajak}</td>
-                <td className="py-4 md:px-5 px-2 w-1/12">
-                  {i.akhir_pemasangan}
-                </td>
+                <td className="py-4 md:px-5 px-2 w-1/12">{i.nama}</td>
+                <td className="py-4 md:px-5 px-2 w-1/12">{i.tgl_akhir}</td>
               </tr>
             ))}
           </tbody>
