@@ -2,8 +2,6 @@ import { useState } from "react";
 import { ReklameType } from "../../utils/dataInterface";
 import useFetch from "../../utils/useFetch";
 
-interface DashboardDeadlineProps {}
-
 const DashboardDeadline = () => {
   const [periodeFilter, setPeriodeFilter] = useState<
     "bulan ini" | "bulan depan"

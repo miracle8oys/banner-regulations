@@ -1,5 +1,3 @@
-import { IoBagHandle } from "react-icons/io5";
-
 interface ConfirmModalProps {
   handleSubmit: () => Promise<void>;
   setShowConfirmModal: React.Dispatch<React.SetStateAction<boolean>>;

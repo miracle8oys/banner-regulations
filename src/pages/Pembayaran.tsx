@@ -1,21 +1,17 @@
 import Layouts from "../components/layouts";
 import { useState } from "react";
 import { IoChevronBackSharp } from "react-icons/io5";
-import data from "../utils/deadlineReklame.json";
 import FormRegister from "../components/RegistrationForm/FormRegister";
-import ReklameModal from "../components/RegistrationForm/ReklameModal";
 import { Link } from "react-router-dom";
-import ListPembayaranReklame from "../components/Pembayaran/ListPembayaranReklame";
 
 const Pembayaran = () => {
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const [nama_reg, setNama_reg] = useState("");
   const [nik_reg, setNik_reg] = useState("");
   const [npwp_reg, setNpwp_reg] = useState("");
   const [nama_perusahaan, setNama_perusahaan] = useState("");
   const [alamat_perusahaan, setAlamat_perusahaan] = useState("");
   const [no_telp, setNo_telp] = useState("");
-  const [expired_date, setExpired_date] = useState("");
 
   return (
     <Layouts>
@@ -46,7 +42,7 @@ const Pembayaran = () => {
         List Data Reklame
       </p>
       {/* List Reklame */}
-      <ListPembayaranReklame data={data} setShowModal={setShowModal} />
+      {/* <ListPembayaranReklame data={data} setShowModal={setShowModal} /> */}
 
       <div className="flex justify-end mx-7 gap-7">
         <button className="bg-white border border-primary mb-5 font-semibold flex justify-center items-center gap-3 text-primary rounded-md w-40 h-12">

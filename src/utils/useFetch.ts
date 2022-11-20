@@ -6,12 +6,12 @@ const useFetch = (url: string, changes: number) => {
   const [data, setData] = useState<Array<any>>([]);
   const [totalData, setTotalData] = useState(0);
   const [error, setError] = useState<null | string>(null);
-  const [refresh, setRefresh] = useState(0);
+  // const [refresh, setRefresh] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
     const access_token = localStorage.getItem("access_token");
-    const refresh_token = localStorage.getItem("refresh_token");
+    // const refresh_token = localStorage.getItem("refresh_token");
 
     setError(null);
 
@@ -62,7 +62,7 @@ const useFetch = (url: string, changes: number) => {
       .catch((err) => {
         setError(err.message);
       });
-  }, [url, changes, refresh, navigate]);
+  }, [url, changes, navigate]);
 
   return { data, error, totalData };
 };
