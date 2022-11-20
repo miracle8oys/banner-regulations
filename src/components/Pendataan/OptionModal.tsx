@@ -19,6 +19,8 @@ const OptionModal = ({
   showConfirmDeleteModal,
 }: ReklameModalProps) => {
   const navigate = useNavigate();
+  console.log(showModal);
+
   return (
     <div
       id="defaultModal"

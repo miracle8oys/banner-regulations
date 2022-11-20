@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdLogout } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import customFetch from "../../utils/customFetch";
 const BASE_URL = "http://localhost:3000";
 
 interface NavbarProps {
@@ -9,6 +11,21 @@ interface NavbarProps {
 
 const Navbar = ({ setShowSidebar }: NavbarProps) => {
   const [showLogout, setShowLogout] = useState(false);
+  const [name, setName] = useState("");
+  const [id_role, setId_role] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    customFetch("/api/profile").then((res) => {
+      setName(res.name);
+      setId_role(res.id_role);
+    });
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    navigate("/login");
+  };
 
   return (
     <nav className="px-5 bg-white border-gray-200 shadow-lg">
@@ -36,8 +53,10 @@ const Navbar = ({ setShowSidebar }: NavbarProps) => {
               >
                 <img src={`${BASE_URL}/profile.png`} alt="" />
                 <div>
-                  <p>Alexander W.</p>
-                  <p className="text-xs">Admin</p>
+                  <p>{name}</p>
+                  <p className="text-xs">
+                    {id_role === 1 ? <span>Admin</span> : <span>User</span>}
+                  </p>
                 </div>
                 <svg
                   onClick={() => setShowLogout((current) => !current)}
@@ -59,6 +78,7 @@ const Navbar = ({ setShowSidebar }: NavbarProps) => {
         </div>
 
         <div
+          onClick={handleLogout}
           className={`${
             !showLogout ? "hidden" : "block"
           } w-52 h-16 bg-white text-xl gap-2 text-primary rounded-md font-semibold shadow-md absolute top-24 right-12 flex items-center pl-3`}

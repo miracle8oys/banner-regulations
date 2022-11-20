@@ -27,6 +27,8 @@ const EditForm = () => {
 
   const [reklameList, setReklameList] = useState([]);
 
+  const [changes, setChanges] = useState(0);
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -42,7 +44,7 @@ const EditForm = () => {
         setReklameList(res.data.permohonan);
       });
     }
-  }, [id]);
+  }, [id, changes]);
 
   const handleRegister = async () => {
     const body = {
@@ -69,7 +71,7 @@ const EditForm = () => {
         <Link to={"/pendataan"}>
           <IoChevronBackSharp className="mt-1 cursor-pointer hover:text-2xl hover:text-primary" />{" "}
         </Link>
-        <span>Data Reklame</span>
+        <span>Edit Data Reklame</span>
       </p>
 
       {/* Form Register */}
@@ -111,6 +113,7 @@ const EditForm = () => {
         setShowReklameModal={setShowReklameModal}
         showReklameModal={showReklameModal}
         setShowModal={setShowModal}
+        setChanges={setChanges}
       />
 
       {/* Insert Reklame Modal */}
@@ -119,6 +122,7 @@ const EditForm = () => {
         id_register={parseInt(id!)}
         setShowModal={setShowModal}
         showModal={showModal}
+        setChanges={setChanges}
       />
 
       {showConfirmModal && (
@@ -133,6 +137,7 @@ const EditForm = () => {
           reklame_id={showReklameModal}
           setShowModal={setShowMutateReklameModal}
           showModal={showMutateReklameModal}
+          setChanges={setChanges}
         />
       )}
     </Layouts>

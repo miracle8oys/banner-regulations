@@ -5,12 +5,14 @@ interface ReklameModalProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   showModal: boolean;
   id_register: number;
+  setChanges: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const ReklameModal = ({
   setShowModal,
   showModal,
   id_register,
+  setChanges,
 }: ReklameModalProps) => {
   const [jumlah_muka, setjumlah_muka] = useState("");
   const [area_pemasangan, setArea_pemasangan] = useState("");
@@ -97,8 +99,10 @@ const ReklameModal = ({
       ],
     };
 
-    const res = await dataMutation("/api/reklame/add-reklame", body, "POST");
-    console.log(res);
+    await dataMutation("/api/reklame/add-reklame", body, "POST").then((res) => {
+      setChanges((current) => current + 1);
+      console.log(res);
+    });
   };
 
   return (
@@ -265,11 +269,19 @@ const ReklameModal = ({
           </div>
 
           <div className="flex items-center justify-end p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-            <button className="bg-white border border-primary mb-5 font-semibold flex justify-center items-center gap-3 text-primary rounded-md w-32 h-10">
+            <button
+              onClick={() => {
+                setShowModal(false);
+              }}
+              className="bg-white border border-primary mb-5 font-semibold flex justify-center items-center gap-3 text-primary rounded-md w-32 h-10"
+            >
               <span>Batal</span>
             </button>
             <button
-              onClick={handleAddReklame}
+              onClick={() => {
+                handleAddReklame();
+                setShowModal(false);
+              }}
               className="bg-primary mb-5 font-semibold flex justify-center items-center gap-3 text-white rounded-md w-32 h-10"
             >
               <span>Simpan</span>

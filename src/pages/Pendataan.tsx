@@ -11,9 +11,11 @@ const Pendataan = () => {
   const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState("");
 
+  const [changes, setChanges] = useState(0);
+
   const { data, totalData }: { data: any; totalData: number } = useFetch(
     `/api/reklame/list-reklame?sort=tgl_akhir&order=desc&limit=${showData}&pagenumber=${page}&nama_perusahaan=${keyword}&status=${statusIzin}`,
-    0
+    changes
   );
 
   const changePages = (changes: "PREV" | "NEXT") => {
@@ -46,13 +48,19 @@ const Pendataan = () => {
         />
         {/* Content */}
         <hr />
-        <PendataanContent data={data} page={page} showData={showData} />
+        <PendataanContent
+          data={data}
+          page={page}
+          showData={showData}
+          setChanges={setChanges}
+        />
       </div>
 
       {/* Footer */}
       <div className="flex md:flex-row gap-y-2 flex-col md:justify-between md:px-16 px-10 pb-7">
         <p className="md:text-lg font-semibold text-center">
-          Menampilkan {showData * page - showData + 1}-{showData * page} dari{" "}
+          Menampilkan {showData * page - showData + 1}-
+          {showData * page < totalData ? showData * page : totalData} dari{" "}
           {totalData} Data
         </p>
         <div className="flex text-center md:text-base text-sm font-medium">

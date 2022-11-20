@@ -6,9 +6,15 @@ interface PendataanContentProps {
   data: Array<ReklameType>;
   page: number;
   showData: number;
+  setChanges: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const PendataanContent = ({ data, page, showData }: PendataanContentProps) => {
+const PendataanContent = ({
+  data,
+  page,
+  showData,
+  setChanges,
+}: PendataanContentProps) => {
   const [showModal, setShowModal] = useState(0);
 
   return (
@@ -34,7 +40,7 @@ const PendataanContent = ({ data, page, showData }: PendataanContentProps) => {
             <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
               Akhir Pemasangan
             </th>
-            <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
+            <th scope="col" className="py-3 md:px-5 px-2 w-2/12">
               Status
             </th>
             <th scope="col" className="py-3 md:px-5 px-2 w-1/12">
@@ -52,6 +58,7 @@ const PendataanContent = ({ data, page, showData }: PendataanContentProps) => {
               page={page}
               showData={showData}
               setShowModal={setShowModal}
+              setChanges={setChanges}
             />
           ))}
         </tbody>

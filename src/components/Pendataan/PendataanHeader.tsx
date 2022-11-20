@@ -24,8 +24,8 @@ const PendataanHeader = ({
     <>
       <div className="py-5 flex gap-3 justify-between flex-col md:flex-row md:text-base text-sm">
         <Link to="/registrasi">
-          <button className="bg-primary md:font-semibold font-medium flex justify-center items-center gap-3 text-white rounded md:w-40 w-full md:h-12 h-10">
-            <BsPlusLg />
+          <button className="bg-primary md:font-semibold font-medium flex justify-center items-center gap-3 text-white rounded-lg md:w-40 w-full md:h-12 h-10">
+            <BsPlusLg className="font-extrabold" />
             <span>Registrasi Baru</span>
           </button>
         </Link>
@@ -127,7 +127,7 @@ const PendataanHeader = ({
             </svg>
           </div>
           <div>
-            <button className="rounded bg-primary text-white font-semibold h-full md:w-52">
+            <button className="rounded-lg bg-primary text-white font-semibold h-full md:w-52">
               Download Laporan
             </button>
           </div>

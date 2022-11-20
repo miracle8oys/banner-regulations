@@ -28,34 +28,6 @@ const center = {
   lng: 114.951,
 };
 
-const marker = [
-  {
-    lat: -8.223,
-    lng: 114.951,
-    status: "belum",
-  },
-  {
-    lat: -8.223,
-    lng: 114.751,
-    status: "sudah",
-  },
-  {
-    lat: -8.213,
-    lng: 114.851,
-    status: "belum",
-  },
-  {
-    lat: -8.253,
-    lng: 114.671,
-    status: "proses",
-  },
-  {
-    lat: -8.233,
-    lng: 114.757,
-    status: "belum",
-  },
-];
-
 // const onLoad = (marker: any) => {
 //   // console.log("marker: ", marker);
 // };

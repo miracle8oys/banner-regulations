@@ -7,6 +7,7 @@ interface ReklameModalProps {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   showModal: boolean;
   reklame_id: number;
+  setChanges: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface ReklameBodyType {
@@ -18,6 +19,7 @@ const MutateReklameModal = ({
   setShowModal,
   showModal,
   reklame_id,
+  setChanges,
 }: ReklameModalProps) => {
   console.log(reklame_id);
 
@@ -173,12 +175,14 @@ const MutateReklameModal = ({
       ],
     };
 
-    const res = await dataMutation(
+    await dataMutation(
       "/api/reklame/update-reklame/" + reklame_id,
       body,
       "PUT"
-    );
-    console.log(res);
+    ).then((res) => {
+      console.log(res);
+      setChanges((current) => current + 1);
+    });
   };
 
   return (
@@ -411,11 +415,19 @@ const MutateReklameModal = ({
           </div>
 
           <div className="flex items-center justify-end p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-            <button className="bg-white border border-primary mb-5 font-semibold flex justify-center items-center gap-3 text-primary rounded-md w-32 h-10">
+            <button
+              onClick={() => {
+                setShowModal(false);
+              }}
+              className="bg-white border border-primary mb-5 font-semibold flex justify-center items-center gap-3 text-primary rounded-md w-32 h-10"
+            >
               <span>Batal</span>
             </button>
             <button
-              onClick={handleAddReklame}
+              onClick={() => {
+                handleAddReklame();
+                setShowModal(false);
+              }}
               className="bg-primary mb-5 font-semibold flex justify-center items-center gap-3 text-white rounded-md w-32 h-10"
             >
               <span>Simpan</span>

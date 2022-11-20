@@ -2,7 +2,6 @@ import DashboardDeadline from "../components/Dashboard/DashboardDeadline";
 import DashboardLocations from "../components/Dashboard/DashboardLocations";
 import DashboardOverview from "../components/Dashboard/DashboardOverview";
 import Layouts from "../components/layouts";
-import dataDummy from "../utils/deadlineReklame.json";
 import { useEffect, useState } from "react";
 import customFetch from "../utils/customFetch";
 
