@@ -1,4 +1,4 @@
-import { MdEdit, MdPayment, MdDeleteOutline } from "react-icons/md";
+import { MdEdit, MdDeleteOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 interface ReklameModalProps {
@@ -34,7 +34,7 @@ const OptionModal = ({
         onClickCapture={() => setShowModal(0)}
         className="relative p-4 flex justify-end text-lg font-medium"
       >
-        <div className="relative bg-secondary shadow-md w-40 pl-3 pt-2 h-32 rounded dark:bg-gray-700">
+        <div className="relative bg-secondary shadow-md w-40 pl-3 pt-2 h-24 rounded dark:bg-gray-700">
           <div
             onClick={() => navigate("/edit/" + registration_id)}
             className="flex gap-5 items-center mt-2 hover:bg-grey cursor-pointer"
@@ -42,10 +42,10 @@ const OptionModal = ({
             <MdEdit className="text-primary text-xl" />
             <p>Edit</p>
           </div>
-          <div className="flex gap-5 items-center mt-2 hover:bg-grey cursor-pointer">
+          {/* <div className="flex gap-5 items-center mt-2 hover:bg-grey cursor-pointer">
             <MdPayment className="text-primary text-xl" />
             <p>Pembayaran</p>
-          </div>
+          </div> */}
           <div
             onClickCapture={() => setShowConfirmDeleteModal(true)}
             className="flex gap-5 items-center mt-2 hover:bg-grey cursor-pointer"

@@ -1,11 +1,13 @@
 import { TbEdit } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface SidebarProps {
   showSidebar: boolean;
 }
 
 const Sidebar = ({ showSidebar }: SidebarProps) => {
+  const location = useLocation();
+
   return (
     <aside
       className={`md:w-[22vw] w-[70vw] ${!showSidebar && "hidden"}`}
@@ -31,7 +33,9 @@ const Sidebar = ({ showSidebar }: SidebarProps) => {
           <li>
             <Link
               to="/"
-              className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:text-primary hover:bg-secondary"
+              className={`${
+                location.pathname === "/" && "bg-secondary text-primary"
+              } flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:text-primary hover:bg-secondary`}
             >
               <svg
                 aria-hidden="true"
@@ -48,7 +52,9 @@ const Sidebar = ({ showSidebar }: SidebarProps) => {
           <li>
             <Link
               to="/pendataan"
-              className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:text-primary hover:bg-secondary"
+              className={`${
+                location.pathname !== "/" && "bg-secondary text-primary"
+              } flex items-center p-2 text-base font-normal text-gray-900 rounded-lg hover:text-primary hover:bg-secondary`}
             >
               <TbEdit className="text-2xl" />
               <span className="ml-3">Pendataan</span>
