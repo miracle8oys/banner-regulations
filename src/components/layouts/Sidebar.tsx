@@ -6,8 +6,6 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ showSidebar }: SidebarProps) => {
-  const BASE_URL = "http://localhost:3000";
-
   return (
     <aside
       className={`md:w-[22vw] w-[70vw] ${!showSidebar && "hidden"}`}
@@ -16,7 +14,7 @@ const Sidebar = ({ showSidebar }: SidebarProps) => {
       <div className="overflow-y-auto py-4 md:px-7 bg-primary rounded h-full min-h-screen text-white">
         <Link to="/" className="flex items-center pl-2.5 md:mb-12 mb-5">
           <img
-            src={`${BASE_URL}/logo.png`}
+            src={`/logo.png`}
             className="mr-3 md:w-16 md:h-16 w-10 h-10"
             alt="BulelengLogo"
           />

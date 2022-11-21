@@ -3,7 +3,6 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
-const BASE_URL = "http://localhost:3000";
 
 interface NavbarProps {
   setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
@@ -51,7 +50,7 @@ const Navbar = ({ setShowSidebar }: NavbarProps) => {
                 data-dropdown-toggle="dropdownNavbar"
                 className="flex gap-3 text-xl justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto"
               >
-                <img src={`${BASE_URL}/profile.png`} alt="" />
+                <img src={`/profile.png`} alt="" />
                 <div>
                   <p>{name}</p>
                   <p className="text-xs">
@@ -96,11 +95,7 @@ const Navbar = ({ setShowSidebar }: NavbarProps) => {
             data-dropdown-toggle="dropdownNavbar"
             className="flex gap-3 text-xl justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto"
           >
-            <img
-              className="w-10"
-              src={`${BASE_URL}/profile.png`}
-              alt="user-profile"
-            />
+            <img className="w-10" src={`/profile.png`} alt="user-profile" />
           </button>
         </div>
       </div>
